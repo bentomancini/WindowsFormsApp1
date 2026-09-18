@@ -1,17 +1,17 @@
-Ôªø
+
 namespace WindowsFormsApp1
 {
     partial class Form1
     {
         /// <summary>
-        /// Vari√°vel de designer necess√°ria.
+        /// Vari·vel de designer necess·ria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpar os recursos que est√£o sendo usados.
+        /// Limpar os recursos que est„o sendo usados.
         /// </summary>
-        /// <param name="disposing">true se for necess√°rio descartar os recursos gerenciados; caso contr√°rio, false.</param>
+        /// <param name="disposing">true se for necess·rio descartar os recursos gerenciados; caso contr·rio, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +21,11 @@ namespace WindowsFormsApp1
             base.Dispose(disposing);
         }
 
-        #region C√≥digo gerado pelo Windows Form Designer
+        #region CÛdigo gerado pelo Windows Form Designer
 
         /// <summary>
-        /// M√©todo necess√°rio para suporte ao Designer - n√£o modifique 
-        /// o conte√∫do deste m√©todo com o editor de c√≥digo.
+        /// MÈtodo necess·rio para suporte ao Designer - n„o modifique 
+        /// o conte˙do deste mÈtodo com o editor de cÛdigo.
         /// </summary>
         private void InitializeComponent()
         {
@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
             // 
             this.txtEmail.BackColor = System.Drawing.Color.Transparent;
             this.txtEmail.BorderColor = System.Drawing.Color.BlueViolet;
-            this.txtEmail.BorderRadius = 7;
+            this.txtEmail.BorderRadius = 16;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEmail.DefaultText = "";
             this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
             // 
             this.txtSenha.BackColor = System.Drawing.Color.Transparent;
             this.txtSenha.BorderColor = System.Drawing.Color.BlueViolet;
-            this.txtSenha.BorderRadius = 7;
+            this.txtSenha.BorderRadius = 16;
             this.txtSenha.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSenha.DefaultText = "";
             this.txtSenha.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -132,7 +132,7 @@ namespace WindowsFormsApp1
             // btnEntrar
             // 
             this.btnEntrar.BackColor = System.Drawing.Color.Transparent;
-            this.btnEntrar.BorderRadius = 9;
+            this.btnEntrar.BorderRadius = 18;
             this.btnEntrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnEntrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnEntrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(134, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Ainda n√£o tem uma conta?";
+            this.label1.Text = "Ainda n„o tem uma conta?";
             // 
             // llabelCriar
             // 

@@ -200,6 +200,7 @@ namespace WindowsFormsApp1
                 Padding = new Padding(6),
                 Cursor = Cursors.Hand
             };
+            Tema.Arredondar(card, 14);
 
             var picCapa = new PictureBox
             {
@@ -209,6 +210,7 @@ namespace WindowsFormsApp1
                 BackColor = Color.FromArgb(45, 20, 65),
                 Cursor = Cursors.Hand
             };
+            Tema.Arredondar(picCapa, 60);
 
             if (!string.IsNullOrWhiteSpace(imagemUrl))
             {

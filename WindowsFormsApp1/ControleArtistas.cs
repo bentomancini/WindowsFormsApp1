@@ -122,6 +122,7 @@ namespace WindowsFormsApp1
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold)
             };
             botao.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(botao, 13);
             botao.Click += clique;
             return botao;
         }
@@ -168,6 +169,7 @@ namespace WindowsFormsApp1
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold)
             };
             btnVoltar.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnVoltar, 14);
             btnVoltar.Click += (s, e) => MostrarLista();
             pnlTopoDetalhe.Controls.Add(btnVoltar);
             pnlDetalhe.Controls.Add(pnlTopoDetalhe);
@@ -233,6 +235,7 @@ namespace WindowsFormsApp1
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold)
             };
             btnFavorito.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnFavorito, 15);
             btnFavorito.Click += BtnFavorito_Click;
             pnlEsquerda.Controls.Add(btnFavorito);
 
@@ -405,6 +408,7 @@ namespace WindowsFormsApp1
                 Image = DesenharPlay(),
                 SizeMode = PictureBoxSizeMode.CenterImage
             };
+            Tema.Arredondar(botoes, 14);
             pnl.Controls.Add(botoes);
 
             var capa = new PictureBox
@@ -414,6 +418,7 @@ namespace WindowsFormsApp1
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = Color.FromArgb(28, 16, 42)
             };
+            Tema.Arredondar(capa, 14);
             if (!string.IsNullOrWhiteSpace(faixa.ImagemUrl))
             {
                 try

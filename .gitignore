@@ -16,6 +16,10 @@ perfil_usuario.json
 ## Banco/senhas
 *.config.disabled
 
+## Runtime local (lembrar login / ultimo acesso)
+lembrar_login.txt
+ultimo_login.txt
+
 ## Temp
 *.log
 ## Snapshot de pagina web (grande e desnecessario)

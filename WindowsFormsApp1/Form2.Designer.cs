@@ -1,4 +1,4 @@
-ï»¿
+
 namespace WindowsFormsApp1
 {
     partial class Form2
@@ -90,13 +90,13 @@ namespace WindowsFormsApp1
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 16);
             this.label4.TabIndex = 17;
-            this.label4.Text = "mÃºsicas favoritas?";
+            this.label4.Text = "músicas favoritas?";
             // 
             // btnPlaylists
             // 
             this.btnPlaylists.BackColor = System.Drawing.Color.Transparent;
             this.btnPlaylists.BorderColor = System.Drawing.Color.BlueViolet;
-            this.btnPlaylists.BorderRadius = 14;
+            this.btnPlaylists.BorderRadius = 11;
             this.btnPlaylists.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnPlaylists.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnPlaylists.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -114,7 +114,7 @@ namespace WindowsFormsApp1
             // 
             this.btnArtistas.BackColor = System.Drawing.Color.Transparent;
             this.btnArtistas.BorderColor = System.Drawing.Color.Transparent;
-            this.btnArtistas.BorderRadius = 14;
+            this.btnArtistas.BorderRadius = 11;
             this.btnArtistas.BorderThickness = 1;
             this.btnArtistas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnArtistas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -145,7 +145,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox7.BorderRadius = 3;
+            this.guna2PictureBox7.BorderRadius = 10;
             this.guna2PictureBox7.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox7.Image = global::WindowsFormsApp1.Properties.Resources.notification_bell_7263459;
             this.guna2PictureBox7.ImageRotate = 0F;
@@ -174,7 +174,7 @@ namespace WindowsFormsApp1
             this.txtBusca.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBusca.Location = new System.Drawing.Point(243, 82);
             this.txtBusca.Name = "txtBusca";
-            this.txtBusca.PlaceholderText = "          Buscar mÃºsicas, artistas ou playlists...";
+            this.txtBusca.PlaceholderText = "          Buscar músicas, artistas ou playlists...";
             this.txtBusca.SelectedText = "";
             this.txtBusca.Size = new System.Drawing.Size(325, 32);
             this.txtBusca.TabIndex = 35;
@@ -184,7 +184,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2Panel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel5.BorderColor = System.Drawing.Color.BlueViolet;
-            this.guna2Panel5.BorderRadius = 8;
+            this.guna2Panel5.BorderRadius = 16;
             this.guna2Panel5.BorderThickness = 1;
             this.guna2Panel5.Controls.Add(this.guna2PictureBox20);
             this.guna2Panel5.Controls.Add(this.btnInicio);
@@ -207,7 +207,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox20.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox20.BorderRadius = 3;
+            this.guna2PictureBox20.BorderRadius = 10;
             this.guna2PictureBox20.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox20.Image = global::WindowsFormsApp1.Properties.Resources.e1c43b51_5fde_45b6_a129_be197488087f_removebg_preview;
             this.guna2PictureBox20.ImageRotate = 0F;
@@ -222,7 +222,7 @@ namespace WindowsFormsApp1
             // 
             this.btnInicio.BackColor = System.Drawing.Color.Transparent;
             this.btnInicio.BorderColor = System.Drawing.Color.BlueViolet;
-            this.btnInicio.BorderRadius = 14;
+            this.btnInicio.BorderRadius = 11;
             this.btnInicio.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnInicio.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnInicio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -235,7 +235,7 @@ namespace WindowsFormsApp1
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(90, 23);
             this.btnInicio.TabIndex = 38;
-            this.btnInicio.Text = "InÃ­cio";
+            this.btnInicio.Text = "Início";
             // 
             // guna2CirclePictureBox1
             // 
@@ -256,7 +256,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox18.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox18.BorderRadius = 3;
+            this.guna2PictureBox18.BorderRadius = 10;
             this.guna2PictureBox18.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox18.Image = global::WindowsFormsApp1.Properties.Resources.artista_branco2;
             this.guna2PictureBox18.ImageRotate = 0F;
@@ -271,7 +271,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox19.BackColor = System.Drawing.Color.BlueViolet;
             this.guna2PictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox19.BorderRadius = 8;
+            this.guna2PictureBox19.BorderRadius = 12;
             this.guna2PictureBox19.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox19.Image = global::WindowsFormsApp1.Properties.Resources.cora;
             this.guna2PictureBox19.ImageRotate = 0F;
@@ -286,7 +286,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox22.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox22.BorderRadius = 3;
+            this.guna2PictureBox22.BorderRadius = 10;
             this.guna2PictureBox22.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox22.Image = global::WindowsFormsApp1.Properties.Resources.menu_15429415;
             this.guna2PictureBox22.ImageRotate = 0F;
@@ -301,7 +301,7 @@ namespace WindowsFormsApp1
             // 
             this.btnFavoritas.BackColor = System.Drawing.Color.Transparent;
             this.btnFavoritas.BorderColor = System.Drawing.Color.BlueViolet;
-            this.btnFavoritas.BorderRadius = 7;
+            this.btnFavoritas.BorderRadius = 19;
             this.btnFavoritas.BorderThickness = 1;
             this.btnFavoritas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnFavoritas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -321,7 +321,7 @@ namespace WindowsFormsApp1
             // 
             this.guna2PictureBox21.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.guna2PictureBox21.BorderRadius = 3;
+            this.guna2PictureBox21.BorderRadius = 10;
             this.guna2PictureBox21.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox21.Image = global::WindowsFormsApp1.Properties.Resources.search_8915520;
             this.guna2PictureBox21.ImageRotate = 0F;

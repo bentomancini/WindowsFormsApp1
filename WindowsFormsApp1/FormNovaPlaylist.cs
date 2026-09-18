@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnCriar.Click += BtnCriar_Click;
+            Tema.Arredondar(btnCriar, 17);
 
             var btnCancelar = new Button
             {
@@ -68,6 +69,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnCancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+            Tema.Arredondar(btnCancelar, 17);
 
             lblStatus = new Label
             {

@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         private void EstilizarCampo(Guna2TextBox campo, string placeholder, int y)
         {
             campo.BorderColor = Color.BlueViolet;
-            campo.BorderRadius = 7;
+            campo.BorderRadius = 16;
             campo.FillColor = Color.FromArgb(13, 7, 20);
             campo.ForeColor = Color.Azure;
             campo.PlaceholderForeColor = Color.White;
@@ -63,7 +63,7 @@ namespace WindowsFormsApp1
             txtConfirmar.UseSystemPasswordChar = true;
 
             btnRedefinir.Text = "Redefinir";
-            btnRedefinir.BorderRadius = 9;
+            btnRedefinir.BorderRadius = 18;
             btnRedefinir.FillColor = Color.FromArgb(124, 58, 237);
             btnRedefinir.ForeColor = Color.White;
             btnRedefinir.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);

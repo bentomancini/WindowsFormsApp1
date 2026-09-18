@@ -102,7 +102,7 @@ namespace WindowsFormsApp1
 
         private Button CriarBotao(string texto, Point local, Color cor)
         {
-            return new Button
+            var botao = new Button
             {
                 Text = texto,
                 Location = local,
@@ -112,6 +112,8 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            Tema.Arredondar(botao, 16);
+            return botao;
         }
 
         private void CarregarPlaylists()

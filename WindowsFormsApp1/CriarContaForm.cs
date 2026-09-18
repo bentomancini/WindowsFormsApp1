@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
         private void EstilizarCampo(Guna2TextBox campo, string placeholder, int y)
         {
             campo.BorderColor = Color.BlueViolet;
-            campo.BorderRadius = 7;
+            campo.BorderRadius = 16;
             campo.FillColor = Color.FromArgb(13, 7, 20);
             campo.ForeColor = Color.Azure;
             campo.PlaceholderForeColor = Color.White;
@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
             txtConfirmar.UseSystemPasswordChar = true;
 
             btnCriar.Text = "Criar conta";
-            btnCriar.BorderRadius = 9;
+            btnCriar.BorderRadius = 18;
             btnCriar.FillColor = Color.FromArgb(124, 58, 237);
             btnCriar.ForeColor = Color.White;
             btnCriar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);

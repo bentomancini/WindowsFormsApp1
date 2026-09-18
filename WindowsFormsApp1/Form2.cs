@@ -77,6 +77,7 @@ namespace WindowsFormsApp1
 
             CriarPlaylistsLateral();
             ConfigurarLayoutResponsivo();
+            AtualizarEstiloAbas();
 
             // Lupa da busca vira botao funcional e o Enter executa a pesquisa.
             guna2PictureBox21.BringToFront();
@@ -112,11 +113,15 @@ namespace WindowsFormsApp1
             if (_barraPlayer != null)
                 _barraPlayer.Margin = new Padding(0, 0, 0, 8);
 
-            // A busca tem largura fixa e fica ancorada na esquerda/topo.
+            // A busca estica horizontalmente junto com a janela (mais espaco
+            // para digitar termos longos), ancorada a esquerda e direita.
             if (txtBusca != null)
-                txtBusca.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                txtBusca.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             if (guna2PictureBox21 != null)
                 guna2PictureBox21.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            if (txtBusca != null)
+                txtBusca.Resize += (s, e) => ReposicionarLupaBusca();
+            ReposicionarLupaBusca();
 
             // Bloco de saudacao e sino acompanham a borda direita ao redimensionar.
             if (guna2PictureBox7 != null)
@@ -185,6 +190,18 @@ namespace WindowsFormsApp1
                 {
                 }
             }
+        }
+
+        // Mantem a lupa sempre colada no lado direito da barra de busca,
+        // que agora estica junto com a janela.
+        private void ReposicionarLupaBusca()
+        {
+            if (txtBusca == null || guna2PictureBox21 == null)
+                return;
+
+            guna2PictureBox21.Location = new System.Drawing.Point(
+                txtBusca.Right - guna2PictureBox21.Width - 6,
+                txtBusca.Top + (txtBusca.Height - guna2PictureBox21.Height) / 2);
         }
 
         // Cria o painel do painel lateral que lista as playlists do usuario,
@@ -425,6 +442,136 @@ namespace WindowsFormsApp1
             MostrarAbaArtistas();
         }
 
+        // Marca visualmente a aba ativa e "apaga" as demais, com uma transicao
+        // suave de cor (preenchimento roxo na ativa, transparente nas inativas).
+        private void AtualizarEstiloAbas()
+        {
+            // Guarda os botoes a cada chamada (criados no Designer).
+            MarcarAbaAtiva(btnInicio, AbaInicioAtiva);
+            MarcarAbaAtiva(btnArtistas, AbaArtistasAtiva);
+            MarcarAbaAtiva(btnPlaylists, AbaPlaylistsAtiva);
+        }
+
+        private bool AbaInicioAtiva = true;
+        private bool AbaArtistasAtiva = false;
+        private bool AbaPlaylistsAtiva = false;
+
+        private void MarcarAbaAtiva(Guna.UI2.WinForms.Guna2Button botao, bool ativa)
+        {
+            if (botao == null)
+                return;
+
+            Color corAlvo = ativa
+                ? Color.FromArgb(124, 58, 237)
+                : Color.FromArgb(28, 16, 42);
+
+            if (ativa)
+            {
+                botao.FillColor = corAlvo;
+                botao.ForeColor = Color.White;
+                botao.BorderColor = Color.FromArgb(168, 85, 247);
+                botao.BorderThickness = 1;
+            }
+            else
+            {
+                botao.FillColor = corAlvo;
+                botao.ForeColor = Color.FromArgb(200, 190, 230);
+                botao.BorderColor = Color.Transparent;
+                botao.BorderThickness = 0;
+            }
+        }
+
+        // Faz uma aba "entrar" com leve crescimento de altura + opacidade,
+        // para dar a sensacao de abrir/fechar sem usupar o layout.
+        private void AnimarEntradaAba(Control aba)
+        {
+            if (aba == null || !aba.Visible)
+                return;
+
+            int alturaAlvo = aba.Height;
+            aba.Height = Math.Max(10, (int)(alturaAlvo * 0.92));
+            aba.Top -= 2;
+
+            var timer = new System.Windows.Forms.Timer { Interval = 12, Tag = aba };
+            timer.Tick += (s, e2) =>
+            {
+                aba.Height = Math.Min(alturaAlvo, aba.Height + 6);
+                aba.Top = aba.Top + 1;
+
+                if (aba.Height >= alturaAlvo)
+                {
+                    aba.Height = alturaAlvo;
+                    timer.Stop();
+                    timer.Dispose();
+                }
+            };
+            timer.Start();
+        }
+
+        private void MostrarAbaInicio()
+        {
+            pnlResultados.Visible = false;
+            _ctlPlaylists.Visible = false;
+            _ctlArtistas.Visible = false;
+            AbaInicioAtiva = true;
+            AbaArtistasAtiva = false;
+            AbaPlaylistsAtiva = false;
+            AtualizarEstiloAbas();
+            if (_ctlInicio.Visible == false)
+            {
+                _ctlInicio.Atualizar();
+                _ctlInicio.Visible = true;
+            }
+            _ctlInicio.BringToFront();
+            AnimarEntradaAba(_ctlInicio);
+        }
+
+        private void MostrarAbaPlaylists()
+        {
+            pnlResultados.Visible = false;
+            _ctlInicio.Visible = false;
+            _ctlArtistas.Visible = false;
+            AbaInicioAtiva = false;
+            AbaArtistasAtiva = false;
+            AbaPlaylistsAtiva = true;
+            AtualizarEstiloAbas();
+            if (_ctlPlaylists.Visible == false)
+            {
+                _ctlPlaylists.Atualizar();
+                _ctlPlaylists.Visible = true;
+            }
+            _ctlPlaylists.BringToFront();
+            AnimarEntradaAba(_ctlPlaylists);
+        }
+
+        private void MostrarAbaArtistas()
+        {
+            pnlResultados.Visible = false;
+            _ctlInicio.Visible = false;
+            _ctlPlaylists.Visible = false;
+            AbaInicioAtiva = false;
+            AbaArtistasAtiva = true;
+            AbaPlaylistsAtiva = false;
+            AtualizarEstiloAbas();
+            _ctlArtistas.Visible = true;
+            _ctlArtistas.BringToFront();
+            AnimarEntradaAba(_ctlArtistas);
+        }
+
+        private void MostrarResultadosBusca()
+        {
+            // Ao pesquisar, volta a exibir a area de resultados e esconde as abas.
+            _ctlInicio.Visible = false;
+            _ctlPlaylists.Visible = false;
+            _ctlArtistas.Visible = false;
+            AbaInicioAtiva = false;
+            AbaArtistasAtiva = false;
+            AbaPlaylistsAtiva = false;
+            AtualizarEstiloAbas();
+            pnlResultados.Visible = true;
+            pnlResultados.BringToFront();
+        }
+
         private void CriarAbasInicioPlaylists()
         {
             // Hospeda as abas na mesmas regiao do painel de resultados,
@@ -475,51 +622,6 @@ namespace WindowsFormsApp1
             _ctlInicio.Visible = false;
             _ctlPlaylists.Visible = false;
             _ctlArtistas.Visible = false;
-        }
-
-        private void MostrarAbaInicio()
-        {
-            pnlResultados.Visible = false;
-            _ctlPlaylists.Visible = false;
-            _ctlArtistas.Visible = false;
-            if (_ctlInicio.Visible == false)
-            {
-                _ctlInicio.Atualizar();
-                _ctlInicio.Visible = true;
-            }
-            _ctlInicio.BringToFront();
-        }
-
-        private void MostrarAbaPlaylists()
-        {
-            pnlResultados.Visible = false;
-            _ctlInicio.Visible = false;
-            _ctlArtistas.Visible = false;
-            if (_ctlPlaylists.Visible == false)
-            {
-                _ctlPlaylists.Atualizar();
-                _ctlPlaylists.Visible = true;
-            }
-            _ctlPlaylists.BringToFront();
-        }
-
-        private void MostrarAbaArtistas()
-        {
-            pnlResultados.Visible = false;
-            _ctlInicio.Visible = false;
-            _ctlPlaylists.Visible = false;
-            _ctlArtistas.Visible = true;
-            _ctlArtistas.BringToFront();
-        }
-
-        private void MostrarResultadosBusca()
-        {
-            // Ao pesquisar, volta a exibir a area de resultados e esconde as abas.
-            _ctlInicio.Visible = false;
-            _ctlPlaylists.Visible = false;
-            _ctlArtistas.Visible = false;
-            pnlResultados.Visible = true;
-            pnlResultados.BringToFront();
         }
 
         private void OnPlaylistFaixaSolicitada(SpotifyService.Faixa faixa)
@@ -674,6 +776,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnPlayPause.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnPlayPause, 14);
             btnPlayPause.Click += BtnPlayPause_Click;
 
             btnParar = new System.Windows.Forms.Button
@@ -688,6 +791,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnParar.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnParar, 14);
             btnParar.Click += BtnParar_Click;
 
             _timerPosicao = new System.Windows.Forms.Timer { Interval = 500 };
@@ -763,6 +867,7 @@ namespace WindowsFormsApp1
                 BackColor = System.Drawing.Color.FromArgb(28, 16, 42),
                 Padding = new System.Windows.Forms.Padding(6)
             };
+            Tema.Arredondar(card, 14);
 
             var picCapa = new System.Windows.Forms.PictureBox
             {
@@ -771,6 +876,7 @@ namespace WindowsFormsApp1
                 SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom,
                 BackColor = System.Drawing.Color.FromArgb(13, 7, 20)
             };
+            Tema.Arredondar(picCapa, 30);
 
             if (!string.IsNullOrWhiteSpace(faixa.ImagemUrl))
             {
@@ -828,6 +934,7 @@ namespace WindowsFormsApp1
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right
             };
             btnPlay.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnPlay, 17);
             btnPlay.Click += BtnPlay_Click;
 
             bool jaFavorita = faixa.MusicaId.HasValue && _idsFavoritos.Contains(faixa.MusicaId.Value);
@@ -845,6 +952,7 @@ namespace WindowsFormsApp1
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right
             };
             btnFav.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnFav, 14);
             btnFav.Click += BtnFav_Click;
 
             var btnAddPlaylist = new System.Windows.Forms.Button
@@ -860,6 +968,7 @@ namespace WindowsFormsApp1
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right
             };
             btnAddPlaylist.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnAddPlaylist, 17);
             btnAddPlaylist.Click += BtnAddPlaylist_Click;
 
             // Posiciona os botoes relativos ao card (na borda direita) e
@@ -1480,7 +1589,7 @@ namespace WindowsFormsApp1
             var ativo = ActiveControl;
             while (ativo != null)
             {
-                if (ativo is TextBoxBase)
+                if (ativo is TextBoxBase || ativo == txtBusca)
                     return true;
                 ativo = ativo.Parent;
             }

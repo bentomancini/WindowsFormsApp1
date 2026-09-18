@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -105,6 +106,31 @@ namespace WindowsFormsApp1
                 if (cor == Destaque) return C_Destaque;
                 if (cor == Color.Gray) return C_TextoSecundario;
                 return cor;
+            }
+        }
+
+        // Aplica cantos arredondados a qualquer controle (Button, Panel,
+        // PictureBox, etc.) via Region. raio = 0 usa pilula (metade da altura).
+        // Reaplicar sempre que o controle mudar de tamanho.
+        public static void Arredondar(Control c, int raio = 0)
+        {
+            if (c == null || c.Width <= 1 || c.Height <= 1)
+                return;
+
+            int max = Math.Max(1, Math.Min(c.Width, c.Height) / 2);
+            if (raio <= 0)
+                raio = max;
+            raio = Math.Max(1, Math.Min(raio, max));
+
+            int d = raio * 2;
+            using (var caminho = new System.Drawing.Drawing2D.GraphicsPath())
+            {
+                caminho.AddArc(0, 0, d, d, 180, 90);
+                caminho.AddArc(c.Width - d - 1, 0, d, d, 270, 90);
+                caminho.AddArc(c.Width - d - 1, c.Height - d - 1, d, d, 0, 90);
+                caminho.AddArc(0, c.Height - d - 1, d, d, 90, 90);
+                caminho.CloseFigure();
+                c.Region = new Region(caminho);
             }
         }
 

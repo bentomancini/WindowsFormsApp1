@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
 
         private Button CriarBotao(string texto, Color cor)
         {
-            return new Button
+            var botao = new Button
             {
                 Text = texto,
                 AutoSize = false,
@@ -158,6 +158,8 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            Tema.Arredondar(botao, 15);
+            return botao;
         }
 
         public void Atualizar()
@@ -369,6 +371,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnPlay.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnPlay, 15);
             btnPlay.Tag = faixa;
             btnPlay.Click += BtnTocar_Click;
 
@@ -405,6 +408,7 @@ namespace WindowsFormsApp1
                 UseVisualStyleBackColor = false
             };
             btnRemover.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(btnRemover, 15);
             btnRemover.Tag = faixa;
             btnRemover.Click += (s, e) => BtnRemover_Click(faixa, idPlaylist);
 
