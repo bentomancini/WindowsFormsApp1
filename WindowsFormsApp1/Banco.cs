@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace WindowsFormsApp1
@@ -9,7 +10,15 @@ namespace WindowsFormsApp1
 
         public static SqlConnection ObterConexao()
         {
-            return new SqlConnection(StringConexao);
+            return new SqlConnection(ObterStringConexao());
+        }
+
+        public static string ObterStringConexao()
+        {
+            var config = ConfigurationManager.ConnectionStrings["Tecfy"];
+            if (config != null && !string.IsNullOrWhiteSpace(config.ConnectionString))
+                return config.ConnectionString;
+            return StringConexao;
         }
     }
 }
