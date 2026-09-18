@@ -63,7 +63,7 @@ WindowsFormsApp1/
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/joaopedrotb/WindowsFormsApp1.git
+   git clone https://github.com/joaopedrotb/TecFy.git
    ```
 
 2. Abra `WindowsFormsApp1.sln` no Visual Studio.
