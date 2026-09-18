@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
             llabelCriar.LinkClicked += llabelCriar_LinkClicked;
             llabelEsqueceu.LinkClicked += llabelEsqueceu_LinkClicked;
             ConfigurarOlhoSenha();
+            AcceptButton = btnEntrar;
         }
 
         // Adiciona o botao de olho na txtSenha para mostrar/esconder a senha.
@@ -79,6 +80,10 @@ namespace WindowsFormsApp1
             return bmp;
         }
 
+        private static readonly string CaminhoLembrar = System.IO.Path.Combine(
+            System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".",
+            "lembrar_login.txt");
+
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
@@ -100,6 +105,8 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            SalvarLembrar(email);
+
             MessageBox.Show("Bem-vindo, " + usuario.Nome + "!", "Tecfy",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -108,6 +115,20 @@ namespace WindowsFormsApp1
                 this.Hide();
                 form2.ShowDialog(this);
                 this.Show();
+            }
+        }
+
+        private void SalvarLembrar(string email)
+        {
+            try
+            {
+                if (cboxLembrar.Checked)
+                    System.IO.File.WriteAllText(CaminhoLembrar, email);
+                else if (System.IO.File.Exists(CaminhoLembrar))
+                    System.IO.File.Delete(CaminhoLembrar);
+            }
+            catch
+            {
             }
         }
 
@@ -129,6 +150,8 @@ namespace WindowsFormsApp1
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            CarregarLembrar();
+
             try
             {
                 await webView21.EnsureCoreWebView2Async();
@@ -146,6 +169,25 @@ namespace WindowsFormsApp1
                 // Se o WebView2 nao estiver disponivel (runtime ausente, processo
                 // abortado etc.), apenas esconde o controle e segue com o login.
                 webView21.Visible = false;
+            }
+        }
+
+        private void CarregarLembrar()
+        {
+            try
+            {
+                if (System.IO.File.Exists(CaminhoLembrar))
+                {
+                    string email = System.IO.File.ReadAllText(CaminhoLembrar).Trim();
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        txtEmail.Text = email;
+                        cboxLembrar.Checked = true;
+                    }
+                }
+            }
+            catch
+            {
             }
         }
 

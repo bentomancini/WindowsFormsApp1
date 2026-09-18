@@ -1,17 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using SpotifyAPI.Web;
 
 namespace WindowsFormsApp1
 {
-    public class SpotifyService
+    public static class SpotifyService
     {
-        // ====== COLE AQUI SUAS CREDENCIAIS DO https://developer.spotify.com/dashboard ======
-        private const string ClientId = "aa96c0975dd9468aa69fb214fac61e11";
-        private const string ClientSecret = "2a8406f87e26464eaebea4ffd358e044";
-        // ===================================================================================
+        // Chaves da API do Spotify, lidas do App.config (appSettings).
+        // O fallback abaixo mantem compatibilidade com quem ainda nao tem
+        // a chave no config.
+        private static string ClientId
+        {
+            get { return LerOuFallback("SpotifyClientId", DefaultClientId); }
+        }
+
+        private static string ClientSecret
+        {
+            get { return LerOuFallback("SpotifyClientSecret", DefaultClientSecret); }
+        }
+
+        private const string DefaultClientId = "aa96c0975dd9468aa69fb214fac61e11";
+        private const string DefaultClientSecret = "2a8406f87e26464eaebea4ffd358e044";
+
+        private static string LerOuFallback(string chave, string padrao)
+        {
+            var valor = ConfigurationManager.AppSettings[chave];
+            return string.IsNullOrWhiteSpace(valor) ? padrao : valor;
+        }
 
         private static SpotifyClient _cliente;
 
@@ -139,7 +157,7 @@ namespace WindowsFormsApp1
                 {
                     Nome = artista.Name,
                     ImagemUrl = artista.Images.FirstOrDefault()?.Url,
-                    Seguidores = 0,
+                    Seguidores = 0, // Spotify removeu o campo "followers" da API (sempre 0).
                     Generos = artista.Genres ?? new List<string>()
                 });
             }

@@ -250,12 +250,10 @@ namespace WindowsFormsApp1
                 card.Controls.Add(lblSub);
             }
 
-            // Deixa todo o card clicavel.
+            // Deixa todo o card clicavel. O clique em qualquer filho ja
+            // borbulha para o card, entao registrar apenas no card evita
+            // disparo duplo do evento.
             card.Click += clique;
-            picCapa.Click += clique;
-            lblTitulo.Click += clique;
-            foreach (Control c in card.Controls)
-                c.Click += clique;
 
             return card;
         }

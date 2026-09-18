@@ -1376,7 +1376,7 @@ namespace WindowsFormsApp1
                         var dados = client.GetByteArrayAsync(urlCapa).Result;
                         using (var ms = new System.IO.MemoryStream(dados))
                         {
-                            picCapa.Image = System.Drawing.Image.FromStream(ms);
+                            picCapa.Image = new Bitmap(System.Drawing.Image.FromStream(ms));
                         }
                     }
                 }

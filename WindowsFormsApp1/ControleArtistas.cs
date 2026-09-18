@@ -337,7 +337,7 @@ namespace WindowsFormsApp1
                         var dados = client.GetByteArrayAsync(artista.ImagemUrl).Result;
                         using (var ms = new System.IO.MemoryStream(dados))
                         {
-                            picArtista.Image = Image.FromStream(ms);
+                            picArtista.Image = new Bitmap(Image.FromStream(ms));
                         }
                     }
                 }
@@ -406,7 +406,6 @@ namespace WindowsFormsApp1
                 SizeMode = PictureBoxSizeMode.CenterImage
             };
             pnl.Controls.Add(botoes);
-            botoes.Click += (s, e) => MusicaSolicitada?.Invoke(faixa);
 
             var capa = new PictureBox
             {
@@ -422,10 +421,10 @@ namespace WindowsFormsApp1
                     using (var client = new System.Net.Http.HttpClient())
                     {
                         var dados = client.GetByteArrayAsync(faixa.ImagemUrl).Result;
-                        using (var ms = new System.IO.MemoryStream(dados))
-                        {
-                            capa.Image = Image.FromStream(ms);
-                        }
+using (var ms = new System.IO.MemoryStream(dados))
+                            {
+                                capa.Image = new Bitmap(Image.FromStream(ms));
+                            }
                     }
                 }
                 catch
@@ -625,11 +624,10 @@ namespace WindowsFormsApp1
                         using (var client = new System.Net.Http.HttpClient())
                         {
                             var dados = await client.GetByteArrayAsync(artista.ImagemUrl);
-                            using (var ms = new System.IO.MemoryStream(dados))
-                            {
-                                _imagens.Images.Add(Image.FromStream(ms));
-                                item.ImageIndex = _imagens.Images.Count - 1;
-                            }
+using (var ms = new System.IO.MemoryStream(dados))
+                                {
+                                    _imagens.Images.Add(new Bitmap(Image.FromStream(ms)));
+                                }
                         }
                     }
                     catch
