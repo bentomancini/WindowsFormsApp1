@@ -1,0 +1,22 @@
+## Arquivos de build e IDE
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Pacotes NuGet (restaurados na build)
+packages/
+
+## Arquivos de runtime gerados localmente
+perfil_usuario.json
+
+## Banco/senhas
+*.config.disabled
+
+## Temp
+*.log
+## Snapshot de pagina web (grande e desnecessario)
+*.mhtml
