@@ -60,11 +60,11 @@ namespace WindowsFormsApp1
             // 
             this.lblBomdia.AutoSize = true;
             this.lblBomdia.BackColor = System.Drawing.Color.Transparent;
-            this.lblBomdia.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBomdia.Font = new System.Drawing.Font("Microsoft YaHei", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBomdia.ForeColor = System.Drawing.Color.White;
             this.lblBomdia.Location = new System.Drawing.Point(626, 46);
             this.lblBomdia.Name = "lblBomdia";
-            this.lblBomdia.Size = new System.Drawing.Size(108, 26);
+            this.lblBomdia.Size = new System.Drawing.Size(150, 38);
             this.lblBomdia.TabIndex = 14;
             this.lblBomdia.Text = "Boa noite,";
             // 
@@ -72,11 +72,11 @@ namespace WindowsFormsApp1
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(627, 98);
+            this.label3.Location = new System.Drawing.Point(627, 101);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(144, 16);
+            this.label3.Size = new System.Drawing.Size(190, 19);
             this.label3.TabIndex = 16;
             this.label3.Text = "Pronto(a) para curtir suas ";
             // 
@@ -84,11 +84,11 @@ namespace WindowsFormsApp1
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(628, 115);
+            this.label4.Location = new System.Drawing.Point(628, 117);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 16);
+            this.label4.Size = new System.Drawing.Size(170, 19);
             this.label4.TabIndex = 17;
             this.label4.Text = "músicas favoritas?";
             // 
