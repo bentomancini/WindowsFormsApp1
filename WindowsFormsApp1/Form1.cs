@@ -187,6 +187,13 @@ namespace WindowsFormsApp1
                 return;
             }
 
+            if (!email.ToLowerInvariant().EndsWith("@gmail.com"))
+            {
+                MessageBox.Show("Use um email @gmail.com para entrar.", "Atencao",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             UsuarioService.UsuarioLogado usuario = UsuarioService.Autenticar(email, senha);
 
             if (usuario == null)

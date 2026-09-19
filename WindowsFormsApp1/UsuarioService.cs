@@ -29,6 +29,19 @@ namespace WindowsFormsApp1
             }
         }
 
+        private static bool EhEmailGmail(string email)
+        {
+            return email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool ContemCaractereEspecial(string texto)
+        {
+            foreach (char c in texto)
+                if (!char.IsLetterOrDigit(c))
+                    return true;
+            return false;
+        }
+
         private static bool EmailExiste(SqlConnection con, string email)
         {
             using (SqlCommand cmd = new SqlCommand(
@@ -47,11 +60,14 @@ namespace WindowsFormsApp1
             if (string.IsNullOrWhiteSpace(nome))
                 return new Resultado { Erro = "Informe o seu nome." };
 
-            if (!email.Contains("@") || !email.Contains("."))
-                return new Resultado { Erro = "Digite um email valido." };
+            if (!EhEmailGmail(email))
+                return new Resultado { Erro = "Use um email @gmail.com para criar a conta." };
 
-            if (string.IsNullOrWhiteSpace(senha) || senha.Length < 4)
-                return new Resultado { Erro = "A senha deve ter pelo menos 4 caracteres." };
+            if (senha.Length < 8)
+                return new Resultado { Erro = "A senha deve ter pelo menos 8 caracteres." };
+
+            if (!ContemCaractereEspecial(senha))
+                return new Resultado { Erro = "A senha deve conter pelo menos 1 caractere especial (ex.: !@#$%)." };
 
             if (senha != confirmar)
                 return new Resultado { Erro = "As senhas nao conferem." };
@@ -125,8 +141,14 @@ namespace WindowsFormsApp1
         {
             email = (email ?? "").Trim().ToLowerInvariant();
 
-            if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 4)
-                return new Resultado { Erro = "A nova senha deve ter pelo menos 4 caracteres." };
+            if (!EhEmailGmail(email))
+                return new Resultado { Erro = "Use um email @gmail.com cadastrado." };
+
+            if (novaSenha.Length < 8)
+                return new Resultado { Erro = "A nova senha deve ter pelo menos 8 caracteres." };
+
+            if (!ContemCaractereEspecial(novaSenha))
+                return new Resultado { Erro = "A nova senha deve conter pelo menos 1 caractere especial (ex.: !@#$%)." };
 
             if (novaSenha != confirmar)
                 return new Resultado { Erro = "As senhas nao conferem." };
