@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
             _imagens = new ImageList
             {
                 ColorDepth = ColorDepth.Depth32Bit,
-                ImageSize = new Size(40, 40)
+                ImageSize = new Size(56, 56)
             };
 
             lstArtistas = new ListView
@@ -93,11 +93,11 @@ namespace WindowsFormsApp1
                 BorderStyle = BorderStyle.None,
                 BackColor = Color.FromArgb(28, 16, 42),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 10F),
+                Font = new Font("Segoe UI", 12.5F),
                 SmallImageList = _imagens,
                 HeaderStyle = ColumnHeaderStyle.None
             };
-            lstArtistas.Columns.Add("Artista", 300);
+            lstArtistas.Columns.Add("Artista", 360);
             lstArtistas.DoubleClick += LstArtistas_DoubleClick;
             lstArtistas.SelectedIndexChanged += LstArtistas_SelectedIndexChanged;
 
@@ -183,7 +183,7 @@ namespace WindowsFormsApp1
                 RowCount = 1,
                 BackColor = Color.FromArgb(20, 11, 30)
             };
-            grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 230));
+            grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 270));
             grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
@@ -196,7 +196,7 @@ namespace WindowsFormsApp1
 
             picArtista = new PictureBox
             {
-                Location = new Point(40, 40),
+                Location = new Point(60, 45),
                 Size = new Size(150, 150),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = Color.FromArgb(28, 16, 42)
@@ -205,34 +205,34 @@ namespace WindowsFormsApp1
 
             lblNomeArtista = new Label
             {
-                Location = new Point(5, 200),
-                Size = new Size(220, 22),
+                Location = new Point(5, 205),
+                Size = new Size(260, 26),
                 TextAlign = ContentAlignment.MiddleCenter,
                 AutoEllipsis = true,
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
                 BackColor = Color.FromArgb(28, 16, 42)
             };
             pnlEsquerda.Controls.Add(lblNomeArtista);
 
             lblInfoArtista = new Label
             {
-                Location = new Point(5, 224),
-                Size = new Size(220, 34),
+                Location = new Point(5, 234),
+                Size = new Size(260, 40),
                 TextAlign = ContentAlignment.MiddleCenter,
                 AutoEllipsis = true,
                 ForeColor = Color.Silver,
-                Font = new Font("Segoe UI", 8.5F),
+                Font = new Font("Segoe UI", 10F),
                 BackColor = Color.FromArgb(28, 16, 42)
             };
             pnlEsquerda.Controls.Add(lblInfoArtista);
 
             btnFavorito = new Button
             {
-                Location = new Point(32, 264),
-                Size = new Size(166, 30),
+                Location = new Point(52, 280),
+                Size = new Size(166, 34),
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold)
             };
             btnFavorito.FlatAppearance.BorderSize = 0;
             Tema.Arredondar(btnFavorito, 15);
@@ -255,7 +255,7 @@ namespace WindowsFormsApp1
                 Text = "10 musicas mais famosas:",
                 TextAlign = ContentAlignment.MiddleLeft,
                 ForeColor = Color.FromArgb(168, 85, 247),
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 12.5F, FontStyle.Bold),
                 BackColor = Color.FromArgb(20, 11, 30)
             };
 
@@ -391,34 +391,35 @@ namespace WindowsFormsApp1
         {
             int larguraLinha = Math.Max(280, (flpTopMusicas != null ? flpTopMusicas.ClientSize.Width : 480) - 12);
 
-            var pnl = new Panel
+var pnl = new Panel
             {
-                Size = new Size(larguraLinha, 36),
+                Size = new Size(larguraLinha, 60),
                 BackColor = Color.Transparent,
                 Cursor = Cursors.Hand
             };
 
-            var botoes = new PictureBox
-            {
-                Text = "",
-                Size = new Size(28, 28),
-                Location = new Point(0, 4),
-                Cursor = Cursors.Hand,
-                BackColor = Color.FromArgb(124, 58, 237),
-                Image = DesenharPlay(),
-                SizeMode = PictureBoxSizeMode.CenterImage
-            };
-            Tema.Arredondar(botoes, 14);
-            pnl.Controls.Add(botoes);
+            var inicio = new Point(0, 6);
+                var botoes = new PictureBox
+                {
+                    Text = "",
+                    Size = new Size(46, 46),
+                    Location = inicio,
+                    Cursor = Cursors.Hand,
+                    BackColor = Color.FromArgb(124, 58, 237),
+                    Image = DesenharPlay(),
+                    SizeMode = PictureBoxSizeMode.CenterImage
+                };
+                Tema.Arredondar(botoes, 23);
+                pnl.Controls.Add(botoes);
 
-            var capa = new PictureBox
-            {
-                Size = new Size(28, 28),
-                Location = new Point(34, 3),
-                SizeMode = PictureBoxSizeMode.Zoom,
-                BackColor = Color.FromArgb(28, 16, 42)
-            };
-            Tema.Arredondar(capa, 14);
+                var capa = new PictureBox
+                {
+                    Size = new Size(46, 46),
+                    Location = new Point(56, 6),
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    BackColor = Color.FromArgb(28, 16, 42)
+                };
+                Tema.Arredondar(capa, 23);
             if (!string.IsNullOrWhiteSpace(faixa.ImagemUrl))
             {
                 try
@@ -441,9 +442,10 @@ using (var ms = new System.IO.MemoryStream(dados))
             var duracao = new Label
             {
                 Text = FormatarDuracao(faixa.DuracaoSegundos),
-                Location = new Point(larguraLinha - 48, 10),
+                Location = new Point(larguraLinha - 60, 18),
                 AutoSize = true,
                 ForeColor = Color.Silver,
+                Font = new Font("Segoe UI", 11F),
                 BackColor = Color.Transparent
             };
             pnl.Controls.Add(duracao);
@@ -451,11 +453,11 @@ using (var ms = new System.IO.MemoryStream(dados))
             var txt = new Label
             {
                 Text = numero + ".  " + faixa.Nome + "  -  " + faixa.Album,
-                Location = new Point(70, 4),
-                Size = new Size(larguraLinha - 70 - 53, 26),
+                Location = new Point(112, 15),
+                Size = new Size(larguraLinha - 112 - 65, 34),
                 AutoEllipsis = true,
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 10F),
+                Font = new Font("Segoe UI", 13F),
                 BackColor = Color.Transparent
             };
             pnl.Controls.Add(txt);
@@ -469,8 +471,8 @@ using (var ms = new System.IO.MemoryStream(dados))
             pnl.Resize += (s, e) =>
             {
                 int larguraNova = pnl.Width;
-                duracao.Location = new Point(larguraNova - duracao.Width - 6, 10);
-                txt.Size = new Size(Math.Max(60, larguraNova - 70 - 53), 26);
+                duracao.Location = new Point(larguraNova - duracao.Width - 6, 18);
+                txt.Size = new Size(Math.Max(60, larguraNova - 112 - 65), 34);
             };
 
             return pnl;

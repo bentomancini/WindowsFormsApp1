@@ -66,9 +66,9 @@ namespace WindowsFormsApp1
             // btnMusicas
             // 
             this.btnMusicas.BackColor = System.Drawing.Color.Transparent;
-            this.btnMusicas.BorderColor = System.Drawing.Color.BlueViolet;
+            this.btnMusicas.BorderColor = System.Drawing.Color.Transparent;
             this.btnMusicas.BorderRadius = 14;
-            this.btnMusicas.BorderThickness = 1;
+            this.btnMusicas.BorderThickness = 0;
             this.btnMusicas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnMusicas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnMusicas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -86,9 +86,9 @@ namespace WindowsFormsApp1
             // btnArtistas
             // 
             this.btnArtistas.BackColor = System.Drawing.Color.Transparent;
-            this.btnArtistas.BorderColor = System.Drawing.Color.BlueViolet;
+            this.btnArtistas.BorderColor = System.Drawing.Color.Transparent;
             this.btnArtistas.BorderRadius = 14;
-            this.btnArtistas.BorderThickness = 1;
+            this.btnArtistas.BorderThickness = 0;
             this.btnArtistas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnArtistas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnArtistas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));

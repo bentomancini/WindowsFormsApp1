@@ -1,4 +1,4 @@
-
+ï»¿
 namespace WindowsFormsApp1
 {
     partial class Form2
@@ -90,13 +90,14 @@ namespace WindowsFormsApp1
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 16);
             this.label4.TabIndex = 17;
-            this.label4.Text = "músicas favoritas?";
+            this.label4.Text = "mÃºsicas favoritas?";
             // 
             // btnPlaylists
             // 
             this.btnPlaylists.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlaylists.BorderColor = System.Drawing.Color.BlueViolet;
+            this.btnPlaylists.BorderColor = System.Drawing.Color.Transparent;
             this.btnPlaylists.BorderRadius = 11;
+            this.btnPlaylists.BorderThickness = 0;
             this.btnPlaylists.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnPlaylists.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnPlaylists.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -104,9 +105,10 @@ namespace WindowsFormsApp1
             this.btnPlaylists.FillColor = System.Drawing.Color.Transparent;
             this.btnPlaylists.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlaylists.ForeColor = System.Drawing.Color.White;
-            this.btnPlaylists.Location = new System.Drawing.Point(22, 153);
+            this.btnPlaylists.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(58)))), ((int)(((byte)(237)))));
+            this.btnPlaylists.Location = new System.Drawing.Point(42, 157);
             this.btnPlaylists.Name = "btnPlaylists";
-            this.btnPlaylists.Size = new System.Drawing.Size(99, 23);
+            this.btnPlaylists.Size = new System.Drawing.Size(98, 24);
             this.btnPlaylists.TabIndex = 20;
             this.btnPlaylists.Text = "Playlists";
             // 
@@ -115,7 +117,7 @@ namespace WindowsFormsApp1
             this.btnArtistas.BackColor = System.Drawing.Color.Transparent;
             this.btnArtistas.BorderColor = System.Drawing.Color.Transparent;
             this.btnArtistas.BorderRadius = 11;
-            this.btnArtistas.BorderThickness = 1;
+            this.btnArtistas.BorderThickness = 0;
             this.btnArtistas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnArtistas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnArtistas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -123,9 +125,10 @@ namespace WindowsFormsApp1
             this.btnArtistas.FillColor = System.Drawing.Color.Transparent;
             this.btnArtistas.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArtistas.ForeColor = System.Drawing.Color.White;
-            this.btnArtistas.Location = new System.Drawing.Point(22, 187);
+            this.btnArtistas.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(58)))), ((int)(((byte)(237)))));
+            this.btnArtistas.Location = new System.Drawing.Point(42, 196);
             this.btnArtistas.Name = "btnArtistas";
-            this.btnArtistas.Size = new System.Drawing.Size(101, 23);
+            this.btnArtistas.Size = new System.Drawing.Size(98, 24);
             this.btnArtistas.TabIndex = 21;
             this.btnArtistas.Text = "Artistas";
             // 
@@ -174,7 +177,7 @@ namespace WindowsFormsApp1
             this.txtBusca.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBusca.Location = new System.Drawing.Point(243, 82);
             this.txtBusca.Name = "txtBusca";
-            this.txtBusca.PlaceholderText = "          Buscar músicas, artistas ou playlists...";
+            this.txtBusca.PlaceholderText = "          Buscar mÃºsicas, artistas ou playlists...";
             this.txtBusca.SelectedText = "";
             this.txtBusca.Size = new System.Drawing.Size(325, 32);
             this.txtBusca.TabIndex = 35;
@@ -183,9 +186,9 @@ namespace WindowsFormsApp1
             // guna2Panel5
             // 
             this.guna2Panel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel5.BorderColor = System.Drawing.Color.BlueViolet;
+            this.guna2Panel5.BorderColor = System.Drawing.Color.Transparent;
             this.guna2Panel5.BorderRadius = 16;
-            this.guna2Panel5.BorderThickness = 1;
+            this.guna2Panel5.BorderThickness = 0;
             this.guna2Panel5.Controls.Add(this.guna2PictureBox20);
             this.guna2Panel5.Controls.Add(this.btnInicio);
             this.guna2Panel5.Controls.Add(this.guna2CirclePictureBox1);
@@ -211,9 +214,9 @@ namespace WindowsFormsApp1
             this.guna2PictureBox20.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox20.Image = global::WindowsFormsApp1.Properties.Resources.e1c43b51_5fde_45b6_a129_be197488087f_removebg_preview;
             this.guna2PictureBox20.ImageRotate = 0F;
-            this.guna2PictureBox20.Location = new System.Drawing.Point(10, 118);
+            this.guna2PictureBox20.Location = new System.Drawing.Point(12, 119);
             this.guna2PictureBox20.Name = "guna2PictureBox20";
-            this.guna2PictureBox20.Size = new System.Drawing.Size(25, 23);
+            this.guna2PictureBox20.Size = new System.Drawing.Size(24, 24);
             this.guna2PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox20.TabIndex = 39;
             this.guna2PictureBox20.TabStop = false;
@@ -221,8 +224,9 @@ namespace WindowsFormsApp1
             // btnInicio
             // 
             this.btnInicio.BackColor = System.Drawing.Color.Transparent;
-            this.btnInicio.BorderColor = System.Drawing.Color.BlueViolet;
+            this.btnInicio.BorderColor = System.Drawing.Color.Transparent;
             this.btnInicio.BorderRadius = 11;
+            this.btnInicio.BorderThickness = 0;
             this.btnInicio.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnInicio.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnInicio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -231,11 +235,11 @@ namespace WindowsFormsApp1
             this.btnInicio.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio.ForeColor = System.Drawing.Color.White;
             this.btnInicio.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(58)))), ((int)(((byte)(237)))));
-            this.btnInicio.Location = new System.Drawing.Point(22, 118);
+            this.btnInicio.Location = new System.Drawing.Point(42, 118);
             this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(90, 23);
+            this.btnInicio.Size = new System.Drawing.Size(98, 24);
             this.btnInicio.TabIndex = 38;
-            this.btnInicio.Text = "Início";
+            this.btnInicio.Text = "InÃ­cio";
             // 
             // guna2CirclePictureBox1
             // 
@@ -260,24 +264,24 @@ namespace WindowsFormsApp1
             this.guna2PictureBox18.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox18.Image = global::WindowsFormsApp1.Properties.Resources.artista_branco2;
             this.guna2PictureBox18.ImageRotate = 0F;
-            this.guna2PictureBox18.Location = new System.Drawing.Point(10, 187);
+            this.guna2PictureBox18.Location = new System.Drawing.Point(12, 197);
             this.guna2PictureBox18.Name = "guna2PictureBox18";
-            this.guna2PictureBox18.Size = new System.Drawing.Size(15, 23);
+            this.guna2PictureBox18.Size = new System.Drawing.Size(24, 24);
             this.guna2PictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox18.TabIndex = 37;
             this.guna2PictureBox18.TabStop = false;
             // 
             // guna2PictureBox19
             // 
-            this.guna2PictureBox19.BackColor = System.Drawing.Color.BlueViolet;
+            this.guna2PictureBox19.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.guna2PictureBox19.BorderRadius = 12;
             this.guna2PictureBox19.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox19.Image = global::WindowsFormsApp1.Properties.Resources.cora;
             this.guna2PictureBox19.ImageRotate = 0F;
-            this.guna2PictureBox19.Location = new System.Drawing.Point(10, 329);
+            this.guna2PictureBox19.Location = new System.Drawing.Point(12, 336);
             this.guna2PictureBox19.Name = "guna2PictureBox19";
-            this.guna2PictureBox19.Size = new System.Drawing.Size(32, 38);
+            this.guna2PictureBox19.Size = new System.Drawing.Size(24, 24);
             this.guna2PictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox19.TabIndex = 40;
             this.guna2PictureBox19.TabStop = false;
@@ -290,9 +294,9 @@ namespace WindowsFormsApp1
             this.guna2PictureBox22.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox22.Image = global::WindowsFormsApp1.Properties.Resources.menu_15429415;
             this.guna2PictureBox22.ImageRotate = 0F;
-            this.guna2PictureBox22.Location = new System.Drawing.Point(10, 155);
+            this.guna2PictureBox22.Location = new System.Drawing.Point(12, 158);
             this.guna2PictureBox22.Name = "guna2PictureBox22";
-            this.guna2PictureBox22.Size = new System.Drawing.Size(20, 20);
+            this.guna2PictureBox22.Size = new System.Drawing.Size(24, 24);
             this.guna2PictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox22.TabIndex = 41;
             this.guna2PictureBox22.TabStop = false;
@@ -300,9 +304,9 @@ namespace WindowsFormsApp1
             // btnFavoritas
             // 
             this.btnFavoritas.BackColor = System.Drawing.Color.Transparent;
-            this.btnFavoritas.BorderColor = System.Drawing.Color.BlueViolet;
+            this.btnFavoritas.BorderColor = System.Drawing.Color.Transparent;
             this.btnFavoritas.BorderRadius = 19;
-            this.btnFavoritas.BorderThickness = 1;
+            this.btnFavoritas.BorderThickness = 0;
             this.btnFavoritas.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnFavoritas.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnFavoritas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -310,11 +314,12 @@ namespace WindowsFormsApp1
             this.btnFavoritas.FillColor = System.Drawing.Color.Transparent;
             this.btnFavoritas.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnFavoritas.ForeColor = System.Drawing.Color.White;
-            this.btnFavoritas.Location = new System.Drawing.Point(10, 329);
+            this.btnFavoritas.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(58)))), ((int)(((byte)(237)))));
+            this.btnFavoritas.Location = new System.Drawing.Point(42, 329);
             this.btnFavoritas.Name = "btnFavoritas";
-            this.btnFavoritas.Size = new System.Drawing.Size(131, 38);
+            this.btnFavoritas.Size = new System.Drawing.Size(104, 38);
             this.btnFavoritas.TabIndex = 39;
-            this.btnFavoritas.Text = "       Suas Favoritas";
+            this.btnFavoritas.Text = "Suas Favoritas";
             this.btnFavoritas.Click += new System.EventHandler(this.btnFavoritas_Click);
             // 
             // guna2PictureBox21

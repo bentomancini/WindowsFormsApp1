@@ -168,7 +168,7 @@ namespace WindowsFormsApp1
             {
                 Text = texto,
                 ForeColor = Color.FromArgb(168, 85, 247),
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
                 AutoSize = true,
                 Margin = new Padding(0, 18, 0, 10),
                 BackColor = Color.Transparent
@@ -193,9 +193,9 @@ namespace WindowsFormsApp1
         {
             var card = new Panel
             {
-                Width = 150,
-                Height = 190,
-                Margin = new Padding(6),
+                Width = 190,
+                Height = 240,
+                Margin = new Padding(8),
                 BackColor = Color.FromArgb(28, 16, 42),
                 Padding = new Padding(6),
                 Cursor = Cursors.Hand
@@ -204,8 +204,8 @@ namespace WindowsFormsApp1
 
             var picCapa = new PictureBox
             {
-                Location = new Point(15, 10),
-                Size = new Size(120, 120),
+                Location = new Point(20, 12),
+                Size = new Size(150, 150),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = Color.FromArgb(45, 20, 65),
                 Cursor = Cursors.Hand
@@ -221,11 +221,11 @@ namespace WindowsFormsApp1
             {
                 Text = titulo ?? "",
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 AutoSize = true,
-                MaximumSize = new Size(138, 18),
+                MaximumSize = new Size(178, 22),
                 AutoEllipsis = true,
-                Location = new Point(6, 138),
+                Location = new Point(8, 170),
                 BackColor = Color.Transparent,
                 Cursor = Cursors.Hand
             };
@@ -241,11 +241,11 @@ namespace WindowsFormsApp1
                 {
                     Text = subtitulo,
                     ForeColor = Color.Silver,
-                    Font = new Font("Segoe UI", 8F),
+                    Font = new Font("Segoe UI", 9.5F),
                     AutoSize = true,
-                    MaximumSize = new Size(138, 16),
+                    MaximumSize = new Size(178, 18),
                     AutoEllipsis = true,
-                    Location = new Point(6, 160),
+                    Location = new Point(8, 196),
                     BackColor = Color.Transparent,
                     Cursor = Cursors.Hand
                 };

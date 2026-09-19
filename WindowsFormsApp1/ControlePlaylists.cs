@@ -37,10 +37,10 @@ namespace WindowsFormsApp1
             {
                 Text = "Suas playlists",
                 ForeColor = Color.FromArgb(168, 85, 247),
-                Font = new Font("Segoe UI", 15F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 18F, FontStyle.Bold),
                 AutoSize = true,
                 Dock = DockStyle.Top,
-                Padding = new Padding(0, 0, 0, 10)
+                Padding = new Padding(0, 0, 0, 12)
             };
 
             // Painel de baixo: barbotões + lista de musicas.
@@ -89,9 +89,10 @@ namespace WindowsFormsApp1
             {
                 Text = "Musicas da playlist selecionada:",
                 ForeColor = Color.White,
+                Font = new Font("Segoe UI", 11F),
                 AutoSize = true,
                 Dock = DockStyle.Top,
-                Padding = new Padding(0, 0, 0, 6)
+                Padding = new Padding(0, 0, 0, 8)
             };
 
             flpMusicas = new FlowLayoutPanel
@@ -125,7 +126,7 @@ namespace WindowsFormsApp1
                 BackColor = Color.FromArgb(28, 16, 42),
                 ForeColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
-                Font = new Font("Segoe UI", 11F)
+                Font = new Font("Segoe UI", 12.5F)
             };
             lstPlaylists.SelectedIndexChanged += (s, e) => CarregarMusicas();
             lstPlaylistsPanel.Controls.Add(lstPlaylists);
@@ -158,6 +159,7 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            botao.FlatAppearance.BorderSize = 0;
             Tema.Arredondar(botao, 15);
             return botao;
         }
@@ -353,25 +355,39 @@ namespace WindowsFormsApp1
         {
             var linha = new Panel
             {
-                Size = new Size(360, 40),
+                Size = new Size(440, 58),
                 Margin = new Padding(2),
                 Tag = faixa
             };
             linha.MouseDown += Linha_MouseDown;
             linha.MouseMove += Linha_MouseMove;
 
+            var picCapa = new PictureBox
+            {
+                Size = new Size(48, 48),
+                Location = new Point(2, 5),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.FromArgb(45, 20, 65),
+                Tag = faixa
+            };
+            Tema.Arredondar(picCapa, 24);
+            if (!string.IsNullOrWhiteSpace(faixa.ImagemUrl))
+            {
+                try { picCapa.LoadAsync(faixa.ImagemUrl); } catch { }
+            }
+
             var btnPlay = new Button
             {
                 Text = "▶",
-                Size = new Size(30, 30),
-                Location = new Point(2, 5),
+                Size = new Size(42, 42),
+                Location = new Point(60, 8),
                 BackColor = Color.FromArgb(124, 58, 237),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
             btnPlay.FlatAppearance.BorderSize = 0;
-            Tema.Arredondar(btnPlay, 15);
+            Tema.Arredondar(btnPlay, 21);
             btnPlay.Tag = faixa;
             btnPlay.Click += BtnTocar_Click;
 
@@ -380,9 +396,9 @@ namespace WindowsFormsApp1
                 Text = faixa.Nome + "  -  " + faixa.Artistas,
                 ForeColor = Color.White,
                 AutoSize = true,
-                Location = new Point(38, 11),
-                Font = new Font("Segoe UI", 10F),
-                MaximumSize = new Size(200, 20)
+                Location = new Point(112, 18),
+                Font = new Font("Segoe UI", 13F),
+                MaximumSize = new Size(250, 26)
             };
 
             var lblDur = new Label
@@ -392,26 +408,27 @@ namespace WindowsFormsApp1
                     : "",
                 ForeColor = Color.Gray,
                 AutoSize = true,
-                Location = new Point(272, 11),
-                Font = new Font("Segoe UI", 9F)
+                Location = new Point(350, 20),
+                Font = new Font("Segoe UI", 11F)
             };
 
             var btnRemover = new Button
             {
                 Text = "✕",
-                Size = new Size(30, 30),
-                Location = new Point(326, 5),
+                Size = new Size(42, 42),
+                Location = new Point(390, 8),
                 BackColor = Color.FromArgb(45, 20, 65),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
             btnRemover.FlatAppearance.BorderSize = 0;
-            Tema.Arredondar(btnRemover, 15);
+            Tema.Arredondar(btnRemover, 21);
             btnRemover.Tag = faixa;
             btnRemover.Click += (s, e) => BtnRemover_Click(faixa, idPlaylist);
 
+            linha.Controls.Add(picCapa);
             linha.Controls.Add(btnPlay);
             linha.Controls.Add(lblNome);
             linha.Controls.Add(lblDur);

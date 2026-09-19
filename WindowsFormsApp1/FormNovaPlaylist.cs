@@ -55,6 +55,7 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            btnCriar.FlatAppearance.BorderSize = 0;
             btnCriar.Click += BtnCriar_Click;
             Tema.Arredondar(btnCriar, 17);
 
@@ -68,6 +69,7 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
             Tema.Arredondar(btnCancelar, 17);
 

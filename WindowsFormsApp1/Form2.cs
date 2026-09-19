@@ -24,6 +24,10 @@ namespace WindowsFormsApp1
         private ControleInicio _ctlInicio;
         private ControlePlaylists _ctlPlaylists;
         private ControleArtistas _ctlArtistas;
+        private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnDesfazer;
+        private System.Collections.Generic.Stack<string> _pilhaVoltar = new System.Collections.Generic.Stack<string>();
+        private System.Collections.Generic.Stack<string> _pilhaDesfazer = new System.Collections.Generic.Stack<string>();
 
         private NAudio.Wave.WaveOutEvent _output;
         private NAudio.Wave.MediaFoundationReader _reader;
@@ -69,6 +73,7 @@ namespace WindowsFormsApp1
             CriarPainelResultados();
             CriarBarraPlayer();
             CriarTimerBusca();
+            CriarBotoesNavegacao();
             CriarAbasInicioPlaylists();
 
             btnInicio.Click += btnInicio_Click;
@@ -214,7 +219,7 @@ namespace WindowsFormsApp1
 
             flpPlaylistsLateral = new System.Windows.Forms.FlowLayoutPanel
             {
-                Location = new System.Drawing.Point(10, 375),
+                Location = new System.Drawing.Point(10, 392),
                 Size = new System.Drawing.Size(131, 200),
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left
                     | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom,
@@ -231,7 +236,7 @@ namespace WindowsFormsApp1
             var lblMinhasPlaylists = new System.Windows.Forms.Label
             {
                 Text = "Minhas Playlists",
-                Location = new System.Drawing.Point(10, 353),
+                Location = new System.Drawing.Point(10, 372),
                 Size = new System.Drawing.Size(131, 16),
                 TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
                 ForeColor = System.Drawing.Color.FromArgb(168, 85, 247),
@@ -298,8 +303,8 @@ namespace WindowsFormsApp1
             var card = new System.Windows.Forms.Panel
             {
                 Width = 131,
-                Height = 58,
-                Margin = new System.Windows.Forms.Padding(0, 2, 0, 2),
+                Height = 68,
+                Margin = new System.Windows.Forms.Padding(0, 3, 0, 3),
                 Padding = new System.Windows.Forms.Padding(4),
                 BackColor = System.Drawing.Color.FromArgb(28, 16, 42),
                 Tag = id,
@@ -309,7 +314,7 @@ namespace WindowsFormsApp1
             var picCapa = new System.Windows.Forms.PictureBox
             {
                 Location = new System.Drawing.Point(4, 4),
-                Size = new System.Drawing.Size(50, 50),
+                Size = new System.Drawing.Size(60, 60),
                 SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom,
                 BackColor = System.Drawing.Color.FromArgb(45, 20, 65),
                 Image = DesenharIconePlaylist(),
@@ -325,12 +330,12 @@ namespace WindowsFormsApp1
             var lblNome = new System.Windows.Forms.Label
             {
                 Text = nome,
-                Location = new System.Drawing.Point(58, 8),
-                Size = new System.Drawing.Size(69, 20),
+                Location = new System.Drawing.Point(68, 10),
+                Size = new System.Drawing.Size(59, 22),
                 TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
                 AutoEllipsis = true,
                 ForeColor = System.Drawing.Color.White,
-                Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold),
+                Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold),
                 BackColor = System.Drawing.Color.Transparent,
                 Tag = id,
                 Cursor = System.Windows.Forms.Cursors.Hand
@@ -339,12 +344,12 @@ namespace WindowsFormsApp1
             var lblQtd = new System.Windows.Forms.Label
             {
                 Text = quantidade + " musica" + (quantidade == 1 ? "" : "s"),
-                Location = new System.Drawing.Point(58, 30),
-                Size = new System.Drawing.Size(69, 16),
+                Location = new System.Drawing.Point(68, 34),
+                Size = new System.Drawing.Size(59, 16),
                 TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
                 AutoEllipsis = true,
                 ForeColor = System.Drawing.Color.Silver,
-                Font = new System.Drawing.Font("Segoe UI", 8F),
+                Font = new System.Drawing.Font("Segoe UI", 8.5F),
                 BackColor = System.Drawing.Color.Transparent,
                 Tag = id,
                 Cursor = System.Windows.Forms.Cursors.Hand
@@ -397,6 +402,7 @@ namespace WindowsFormsApp1
             }
 
             MostrarAbaPlaylists();
+            RedimensionarAreaConteudo();
             _ctlPlaylists.AbrirPlaylist(idPlaylist);
         }
 
@@ -408,7 +414,7 @@ namespace WindowsFormsApp1
             const int margem = 10;  // distancia ate a borda direita/inferior
 
             int largura = Math.Max(320, ClientSize.Width - x - margem);
-            int alturaJogo = ClientSize.Height - 150 - 70 - margem; // 150 (topo) + 70 (player + margem)
+            int alturaJogo = ClientSize.Height - 150 - 90 - margem; // 150 (topo) + 90 (player de 80 + margem)
             int altura = Math.Max(180, alturaJogo);
 
             var tamanho = new Size(largura, altura);
@@ -429,16 +435,19 @@ namespace WindowsFormsApp1
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
+            RedimensionarAreaConteudo();
             MostrarAbaInicio();
         }
 
         private void btnPlaylists_Click(object sender, EventArgs e)
         {
+            RedimensionarAreaConteudo();
             MostrarAbaPlaylists();
         }
 
         private void btnArtistas_Click(object sender, EventArgs e)
         {
+            RedimensionarAreaConteudo();
             MostrarAbaArtistas();
         }
 
@@ -481,26 +490,28 @@ namespace WindowsFormsApp1
             }
         }
 
-        // Faz uma aba "entrar" com leve crescimento de altura + opacidade,
-        // para dar a sensacao de abrir/fechar sem usupar o layout.
-        private void AnimarEntradaAba(Control aba)
+        // Faz uma aba "entrar" com leve crescimento vertical + opacidade,
+// SEM mover o Top (que ficaria acumulando e empurrando a tela para baixo).
+private void AnimarEntradaAba(Control aba)
         {
             if (aba == null || !aba.Visible)
                 return;
 
             int alturaAlvo = aba.Height;
+            int topoAlvo = aba.Top;
             aba.Height = Math.Max(10, (int)(alturaAlvo * 0.92));
-            aba.Top -= 2;
+            aba.Top = topoAlvo;
 
             var timer = new System.Windows.Forms.Timer { Interval = 12, Tag = aba };
             timer.Tick += (s, e2) =>
             {
-                aba.Height = Math.Min(alturaAlvo, aba.Height + 6);
-                aba.Top = aba.Top + 1;
+                aba.Height = Math.Min(alturaAlvo, aba.Height + 8);
+                aba.Top = topoAlvo;
 
                 if (aba.Height >= alturaAlvo)
                 {
                     aba.Height = alturaAlvo;
+                    aba.Top = topoAlvo;
                     timer.Stop();
                     timer.Dispose();
                 }
@@ -510,6 +521,7 @@ namespace WindowsFormsApp1
 
         private void MostrarAbaInicio()
         {
+            RegistrarNavegacao("inicio");
             pnlResultados.Visible = false;
             _ctlPlaylists.Visible = false;
             _ctlArtistas.Visible = false;
@@ -528,6 +540,7 @@ namespace WindowsFormsApp1
 
         private void MostrarAbaPlaylists()
         {
+            RegistrarNavegacao("playlists");
             pnlResultados.Visible = false;
             _ctlInicio.Visible = false;
             _ctlArtistas.Visible = false;
@@ -546,6 +559,7 @@ namespace WindowsFormsApp1
 
         private void MostrarAbaArtistas()
         {
+            RegistrarNavegacao("artistas");
             pnlResultados.Visible = false;
             _ctlInicio.Visible = false;
             _ctlPlaylists.Visible = false;
@@ -560,6 +574,7 @@ namespace WindowsFormsApp1
 
         private void MostrarResultadosBusca()
         {
+            RegistrarNavegacao("busca");
             // Ao pesquisar, volta a exibir a area de resultados e esconde as abas.
             _ctlInicio.Visible = false;
             _ctlPlaylists.Visible = false;
@@ -685,6 +700,107 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void CriarBotoesNavegacao()
+        {
+            // Botoes circulares de voltar/avancar no topo da area de conteudo,
+            // como no Spotify. Usam pilhas para andar para tras e para frente
+            // entre as abas visitadas (inicio, playlists, artistas e busca).
+            btnVoltar = CriarBotaoNavegacao("<", 243, BtnVoltar_Click);
+            btnDesfazer = CriarBotaoNavegacao(">", 283, BtnDesfazer_Click);
+
+            Controls.Add(btnVoltar);
+            Controls.Add(btnDesfazer);
+            btnVoltar.BringToFront();
+            btnDesfazer.BringToFront();
+            AtualizarEstadoNavegacao();
+        }
+
+        private System.Windows.Forms.Button CriarBotaoNavegacao(string texto, int x, EventHandler clique)
+        {
+            var botao = new System.Windows.Forms.Button
+            {
+                Text = texto,
+                Location = new System.Drawing.Point(x, 25),
+                Size = new System.Drawing.Size(34, 34),
+                BackColor = System.Drawing.Color.FromArgb(45, 20, 65),
+                ForeColor = System.Drawing.Color.White,
+                Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold),
+                FlatStyle = System.Windows.Forms.FlatStyle.Flat,
+                UseVisualStyleBackColor = false,
+                Cursor = System.Windows.Forms.Cursors.Hand
+            };
+            botao.FlatAppearance.BorderSize = 0;
+            Tema.Arredondar(botao, 17);
+            botao.Click += clique;
+            return botao;
+        }
+
+        // Registra a aba atual na pilha de navegacao (sem duplicar a mesma seguida).
+        private void RegistrarNavegacao(string visao)
+        {
+            if (_pilhaVoltar.Count > 0)
+            {
+                string topo = _pilhaVoltar.Peek();
+                if (topo == visao)
+                    return;
+            }
+
+            _pilhaVoltar.Push(visao);
+            _pilhaDesfazer.Clear();
+            AtualizarEstadoNavegacao();
+        }
+
+        private void BtnVoltar_Click(object sender, EventArgs e)
+        {
+            if (_pilhaVoltar.Count == 0)
+                return;
+
+            string atual = _pilhaVoltar.Pop();
+            _pilhaDesfazer.Push(atual);
+            AplicarVisao(_pilhaVoltar.Peek());
+            AtualizarEstadoNavegacao();
+        }
+
+        private void BtnDesfazer_Click(object sender, EventArgs e)
+        {
+            if (_pilhaDesfazer.Count == 0)
+                return;
+
+            string proxima = _pilhaDesfazer.Pop();
+            _pilhaVoltar.Push(proxima);
+            AplicarVisao(proxima);
+            AtualizarEstadoNavegacao();
+        }
+
+        private void AtualizarEstadoNavegacao()
+        {
+            if (btnVoltar == null || btnDesfazer == null)
+                return;
+
+            btnVoltar.Enabled = _pilhaVoltar.Count > 1;
+            btnDesfazer.Enabled = _pilhaDesfazer.Count > 0;
+        }
+
+        private void AplicarVisao(string visao)
+        {
+            RedimensionarAreaConteudo();
+            switch (visao)
+            {
+                case "inicio":
+                    MostrarAbaInicio();
+                    break;
+                case "playlists":
+                    MostrarAbaPlaylists();
+                    break;
+                case "artistas":
+                    MostrarAbaArtistas();
+                    break;
+                case "busca":
+                    MostrarResultadosBusca();
+                    break;
+            }
+        }
+
         private void CriarTimerBusca()
         {
             _timerBusca = new System.Windows.Forms.Timer { Interval = 500 };
@@ -698,14 +814,14 @@ namespace WindowsFormsApp1
             var barra = new System.Windows.Forms.Panel
             {
                 Dock = System.Windows.Forms.DockStyle.Bottom,
-                Height = 62,
+                Height = 80,
                 BackColor = System.Drawing.Color.FromArgb(28, 16, 42)
             };
             _barraPlayer = barra;
 
             trkProgresso = new System.Windows.Forms.TrackBar
             {
-                Location = new System.Drawing.Point(480, 8),
+                Location = new System.Drawing.Point(480, 14),
                 Size = new System.Drawing.Size(300, 20),
                 Maximum = 100,
                 TickStyle = System.Windows.Forms.TickStyle.None,
@@ -718,15 +834,15 @@ namespace WindowsFormsApp1
                 Text = "0:00 / 0:00",
                 ForeColor = System.Drawing.Color.Silver,
                 Font = new System.Drawing.Font("Segoe UI", 8.25F),
-                Location = new System.Drawing.Point(790, 8),
+                Location = new System.Drawing.Point(790, 14),
                 AutoSize = true
             };
 
             // Capa da faixa em reproducao.
             picCapa = new System.Windows.Forms.PictureBox
             {
-                Location = new System.Drawing.Point(170, 4),
-                Size = new System.Drawing.Size(54, 54),
+                Location = new System.Drawing.Point(170, 5),
+                Size = new System.Drawing.Size(70, 70),
                 SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom,
                 BackColor = System.Drawing.Color.FromArgb(45, 20, 65),
                 Image = DesenharCapaVazia()
@@ -736,7 +852,7 @@ namespace WindowsFormsApp1
             // somente enquanto uma faixa esta sendo reproduzida).
             _eq = new ControleEqualizer
             {
-                Location = new System.Drawing.Point(232, 16),
+                Location = new System.Drawing.Point(232, 18),
                 Size = new System.Drawing.Size(28, 24),
                 BackColor = System.Drawing.Color.Transparent,
                 Visible = false
@@ -748,7 +864,7 @@ namespace WindowsFormsApp1
                 Text = "Nenhuma musica",
                 ForeColor = System.Drawing.Color.White,
                 Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold),
-                Location = new System.Drawing.Point(268, 10),
+                Location = new System.Drawing.Point(268, 12),
                 AutoSize = true,
                 MaximumSize = new System.Drawing.Size(200, 20),
                 AutoEllipsis = true
@@ -759,7 +875,7 @@ namespace WindowsFormsApp1
                 Text = "Nenhuma musica tocando",
                 ForeColor = System.Drawing.Color.FromArgb(168, 85, 247),
                 Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold),
-                Location = new System.Drawing.Point(268, 32),
+                Location = new System.Drawing.Point(268, 36),
                 AutoSize = true,
                 MaximumSize = new System.Drawing.Size(200, 18)
             };
@@ -767,7 +883,7 @@ namespace WindowsFormsApp1
             btnPlayPause = new System.Windows.Forms.Button
             {
                 Text = "▶ Pausar",
-                Location = new System.Drawing.Point(8, 18),
+                Location = new System.Drawing.Point(8, 20),
                 Size = new System.Drawing.Size(90, 28),
                 BackColor = System.Drawing.Color.FromArgb(124, 58, 237),
                 ForeColor = System.Drawing.Color.White,
@@ -782,7 +898,7 @@ namespace WindowsFormsApp1
             btnParar = new System.Windows.Forms.Button
             {
                 Text = "■ Parar",
-                Location = new System.Drawing.Point(103, 18),
+                Location = new System.Drawing.Point(103, 20),
                 Size = new System.Drawing.Size(50, 28),
                 BackColor = System.Drawing.Color.FromArgb(45, 20, 65),
                 ForeColor = System.Drawing.Color.White,
@@ -862,7 +978,7 @@ namespace WindowsFormsApp1
             var card = new System.Windows.Forms.Panel
             {
                 Width = pnlResultados.ClientSize.Width - pnlResultados.Padding.Horizontal - 2,
-                Height = 72,
+                Height = 84,
                 Margin = new System.Windows.Forms.Padding(3),
                 BackColor = System.Drawing.Color.FromArgb(28, 16, 42),
                 Padding = new System.Windows.Forms.Padding(6)
@@ -872,11 +988,11 @@ namespace WindowsFormsApp1
             var picCapa = new System.Windows.Forms.PictureBox
             {
                 Location = new System.Drawing.Point(6, 6),
-                Size = new System.Drawing.Size(60, 60),
+                Size = new System.Drawing.Size(72, 72),
                 SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom,
                 BackColor = System.Drawing.Color.FromArgb(13, 7, 20)
             };
-            Tema.Arredondar(picCapa, 30);
+            Tema.Arredondar(picCapa, 36);
 
             if (!string.IsNullOrWhiteSpace(faixa.ImagemUrl))
             {
@@ -889,7 +1005,7 @@ namespace WindowsFormsApp1
                 Text = faixa.Nome,
                 ForeColor = System.Drawing.Color.White,
                 Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold),
-                Location = new System.Drawing.Point(74, 10),
+                Location = new System.Drawing.Point(86, 12),
                 AutoSize = true,
                 MaximumSize = new System.Drawing.Size(220, 60),
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left
@@ -901,7 +1017,7 @@ namespace WindowsFormsApp1
                 Text = faixa.Artistas,
                 ForeColor = System.Drawing.Color.Silver,
                 Font = new System.Drawing.Font("Segoe UI", 9F),
-                Location = new System.Drawing.Point(74, 34),
+                Location = new System.Drawing.Point(86, 38),
                 AutoSize = true,
                 MaximumSize = new System.Drawing.Size(220, 30),
                 Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left
@@ -973,10 +1089,10 @@ namespace WindowsFormsApp1
 
             // Posiciona os botoes relativos ao card (na borda direita) e
             // a duracao a esquerda do botao play.
-            btnAddPlaylist.Location = new System.Drawing.Point(card.Width - margemDireita - 43, 19);
-            btnFav.Location = new System.Drawing.Point(btnAddPlaylist.Left - 40 - 2, 19);
-            btnPlay.Location = new System.Drawing.Point(btnFav.Left - 34 - 2, 19);
-            lblDuracao.Location = new System.Drawing.Point(btnPlay.Left - 42 - 6, 24);
+            btnAddPlaylist.Location = new System.Drawing.Point(card.Width - margemDireita - 43, 25);
+            btnFav.Location = new System.Drawing.Point(btnAddPlaylist.Left - 40 - 2, 25);
+            btnPlay.Location = new System.Drawing.Point(btnFav.Left - 34 - 2, 25);
+            lblDuracao.Location = new System.Drawing.Point(btnPlay.Left - 42 - 6, 30);
 
             card.Controls.Add(picCapa);
             card.Controls.Add(lblNome);
@@ -998,10 +1114,10 @@ namespace WindowsFormsApp1
             System.Windows.Forms.Control btnAddPlaylist)
         {
             const int margemDireita = 3;
-            btnAddPlaylist.Location = new System.Drawing.Point(card.Width - margemDireita - btnAddPlaylist.Width, 19);
-            btnFav.Location = new System.Drawing.Point(btnAddPlaylist.Left - btnFav.Width - 2, 19);
-            btnPlay.Location = new System.Drawing.Point(btnFav.Left - btnPlay.Width - 2, 19);
-            lblDuracao.Location = new System.Drawing.Point(btnPlay.Left - lblDuracao.Width - 6, 24);
+            btnAddPlaylist.Location = new System.Drawing.Point(card.Width - margemDireita - btnAddPlaylist.Width, 25);
+            btnFav.Location = new System.Drawing.Point(btnAddPlaylist.Left - btnFav.Width - 2, 25);
+            btnPlay.Location = new System.Drawing.Point(btnFav.Left - btnPlay.Width - 2, 25);
+            lblDuracao.Location = new System.Drawing.Point(btnPlay.Left - lblDuracao.Width - 6, 30);
         }
 
         private void BtnPlay_Click(object sender, EventArgs e)

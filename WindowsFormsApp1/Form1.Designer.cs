@@ -1,17 +1,17 @@
-
+Ôªø
 namespace WindowsFormsApp1
 {
     partial class Form1
     {
         /// <summary>
-        /// Vari·vel de designer necess·ria.
+        /// Vari√°vel de designer necess√°ria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpar os recursos que est„o sendo usados.
+        /// Limpar os recursos que est√£o sendo usados.
         /// </summary>
-        /// <param name="disposing">true se for necess·rio descartar os recursos gerenciados; caso contr·rio, false.</param>
+        /// <param name="disposing">true se for necess√°rio descartar os recursos gerenciados; caso contr√°rio, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +21,11 @@ namespace WindowsFormsApp1
             base.Dispose(disposing);
         }
 
-        #region CÛdigo gerado pelo Windows Form Designer
+        #region C√≥digo gerado pelo Windows Form Designer
 
         /// <summary>
-        /// MÈtodo necess·rio para suporte ao Designer - n„o modifique 
-        /// o conte˙do deste mÈtodo com o editor de cÛdigo.
+        /// M√©todo necess√°rio para suporte ao Designer - n√£o modifique 
+        /// o conte√∫do deste m√©todo com o editor de c√≥digo.
         /// </summary>
         private void InitializeComponent()
         {
@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(134, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Ainda n„o tem uma conta?";
+            this.label1.Text = "Ainda n√£o tem uma conta?";
             // 
             // llabelCriar
             // 

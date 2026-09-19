@@ -112,6 +112,7 @@ namespace WindowsFormsApp1
                 FlatStyle = FlatStyle.Flat,
                 UseVisualStyleBackColor = false
             };
+            botao.FlatAppearance.BorderSize = 0;
             Tema.Arredondar(botao, 16);
             return botao;
         }
